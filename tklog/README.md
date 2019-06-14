@@ -7,21 +7,23 @@
 
 Пример использования:
 
-	#include "mainwindow.h"
-	#include <QApplication>
+```c++
+#include "mainwindow.h"
+#include <QApplication>
 
-	// вспомогательный класс для логирования
-	#include "tklog.h"
+// вспомогательный класс для логирования
+#include "tklog.h"
 
-	int main(int argc, char *argv[])
-	{
-		QApplication a(argc, argv);
+int main(int argc, char *argv[])
+{
+	QApplication a(argc, argv);
 
-		// Устанавливаем обработчик
-		qInstallMessageHandler(TKlog::messageHandler);
+	// Устанавливаем обработчик
+	qInstallMessageHandler(TKlog::messageHandler);
 
-		MainWindow w;
-		w.show();
+	MainWindow w;
+	w.show();
 
-		return a.exec();
-	}
+	return a.exec();
+}
+```
