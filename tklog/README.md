@@ -27,3 +27,12 @@ int main(int argc, char *argv[])
 	return a.exec();
 }
 ```
+Далее внтури кода используем [Warning and Debugging Messages](https://doc.qt.io/qt-5/debug.html#warning-and-debugging-messages):
+
+Qt includes global macros for writing out warning and debug text. You can use them for the following purposes:
+
+    qDebug() is used for writing custom debug output.
+    qInfo() is used for informational messages.
+    qWarning() is used to report warnings and recoverable errors in your application.
+    qCritical() is used for writing critical error messages and reporting system errors.
+    qFatal() is used for writing fatal error messages shortly before exiting.
