@@ -36,3 +36,11 @@ Qt includes global macros for writing out warning and debug text. You can use th
     qWarning() is used to report warnings and recoverable errors in your application.
     qCritical() is used for writing critical error messages and reporting system errors.
     qFatal() is used for writing fatal error messages shortly before exiting.
+
+Например:
+```c++
+if ( logDir.mkpath( logDir.path() ) )
+    qInfo() << "created logging directory";
+else
+    qWarning() << "failed to create logging directory";
+```
