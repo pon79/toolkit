@@ -14,15 +14,12 @@ void TKlog::messageHandler(QtMsgType type, const QMessageLogContext &context, co
 {
     // если каталог нашего приложения не существует, то создаём его в домашней папке пользователя
     QDir logDir{ QDir::homePath() + '/' + qApp->applicationName().remove(' ') + "/log" };
-    if ( !logDir.exists() )
-    {
-        if ( logDir.mkpath( logDir.path() ) )
-            qInfo() << "created logging directory";
-        else
-            qWarning() << "failed to create logging directory";
-    }
 
-    // каждый день создаём новый файл логирования
+    if ( !logDir.exists() )
+        if ( !logDir.mkpath( logDir.path() ) )
+             qWarning() << "failed to create logging directory";
+
+    // создаём новый файл c указанием даты создания
     QFile logFile( logDir.path() + "/log_" + QDate::currentDate().toString( Qt::ISODate ) );
 
     if (!logFile.open(QIODevice::Append | QIODevice::Text ))
@@ -30,8 +27,8 @@ void TKlog::messageHandler(QtMsgType type, const QMessageLogContext &context, co
 
     QTextStream out( &logFile );
 
-    // указываем время записи
-    out << QTime::currentTime().toString();
+    // указываем дату и время записи
+    out << QDateTime::currentDateTime().toString(Qt::ISODate ); /*<<*//* QTime::currentTime().toString()*/;
 
     // По типу определяем, к какому уровню относится сообщение
     switch (type)
