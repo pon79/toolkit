@@ -33,8 +33,8 @@ void TKlog::messageHandler(QtMsgType type, const QMessageLogContext &context, co
     // По типу определяем, к какому уровню относится сообщение
     switch (type)
     {
-    case QtInfoMsg:     out << " INFO\t"; break;
-    case QtDebugMsg:    out << " DEBUG\t"; break;
+    case QtInfoMsg:     out << " INFO"; break;
+    case QtDebugMsg:    out << " DEBUG"; break;
     case QtWarningMsg:  out << " WARNING"; break;
     case QtCriticalMsg: out << " CRITICAL\n"; break;
     case QtFatalMsg:    out << " FATAL\n";
@@ -42,8 +42,19 @@ void TKlog::messageHandler(QtMsgType type, const QMessageLogContext &context, co
 
     #ifdef QT_DEBUG
     // в режиме DEBUG перед сообщением пишем название функции
-    out << ": " << context.function;
-    qDebug() << context.function << "  : "  << msg; // дублируем в консоль
+
+    QString functionName{context.function};
+
+    if ( functionName.contains("::") )
+            functionName = functionName.split("::")[ 1 ];
+
+    functionName = functionName.split("(").first();
+
+    if ( functionName.contains(' ') )
+            functionName = functionName.split(' ')[ 1 ];
+
+    out << ": " << functionName;
+    qDebug() << functionName << ':'  << msg; // дублируем в консоль
     #endif
 
     // записываем сообщение
