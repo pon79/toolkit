@@ -1,6 +1,6 @@
 #include "tklog.h"
 
-#include <QApplication> // qApp->applicationName
+#include <QCoreApplication> // qApp->applicationName
 #include <QDate>
 #include <QDir>
 
