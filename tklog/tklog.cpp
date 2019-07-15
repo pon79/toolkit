@@ -4,8 +4,6 @@
 #include <QDate>
 #include <QDir>
 
-
-
 TKlog::TKlog( )
 {
 }
@@ -45,15 +43,15 @@ void TKlog::messageHandler(QtMsgType type, const QMessageLogContext &context, co
 
     QString functionName{context.function};
 
-    if ( functionName.contains("::") )
-            functionName = functionName.split("::")[ 1 ];
+//    if ( functionName.contains("::") )
+//            functionName = functionName.split("::")[ 1 ];
 
     functionName = functionName.split("(").first();
 
     if ( functionName.contains(' ') )
             functionName = functionName.split(' ')[ 1 ];
 
-    out << ": " << functionName;
+    out << ": " << functionName << ' ';
     qDebug().noquote() << functionName << ':'  << msg; // дублируем в консоль
     #endif
 
