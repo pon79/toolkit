@@ -1,5 +1,5 @@
 
-DEFINES += use_ToolKit
+DEFINES *= use_ToolKit
 
 INCLUDEPATH *= $$PWD
 

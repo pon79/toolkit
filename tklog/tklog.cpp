@@ -54,7 +54,7 @@ void TKlog::messageHandler(QtMsgType type, const QMessageLogContext &context, co
             functionName = functionName.split(' ')[ 1 ];
 
     out << ": " << functionName;
-    qDebug() << functionName << ':'  << msg; // дублируем в консоль
+    qDebug().noquote() << functionName << ':'  << msg; // дублируем в консоль
     #endif
 
     // записываем сообщение
