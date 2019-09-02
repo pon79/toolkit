@@ -11,15 +11,19 @@
 #include "mainwindow.h"
 #include <QApplication>
 
+#ifdef use_ToolKit
 // вспомогательный класс для логирования
 #include "tklog.h"
+#endif
 
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
 
+	#ifdef use_ToolKit
 	// Устанавливаем обработчик
 	qInstallMessageHandler(TKlog::messageHandler);
+	#endif
 
 	MainWindow w;
 	w.show();
