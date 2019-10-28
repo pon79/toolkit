@@ -1,8 +1,6 @@
 
-DEFINES *= use_ToolKit
+DEFINES *= use_TKlog
 
 INCLUDEPATH *= $$PWD
-
-SOURCES *= $$PWD/tklog.cpp
 
 HEADERS *= $$PWD/tklog.h
