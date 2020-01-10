@@ -8,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     qInfo() << "create constructor MainWindow";
 
+    qDebug() << "test";
+
 }
 
 MainWindow::~MainWindow()
