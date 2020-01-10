@@ -1,4 +1,4 @@
-Логирование в Qt проектах.
+# Логирование в Qt проектах.
 
 В режиме release записывает в файл события по уровням qInfo, qWarning, qCritical и qFatal.
 В режиме debug добавляется вывод qDebug и сообщения дублируются в консоль.
@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 
 	#ifdef use_TKlog
 	// Устанавливаем обработчик
-	qInstallMessageHandler(TKlog::messageHandler);
+	qInstallMessageHandler(ToolKit::Log::messageHandler);
 	#endif
 
 	MainWindow w;
