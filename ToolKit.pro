@@ -9,14 +9,12 @@ TEMPLATE = app
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        tmp/testjson.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+        tmp/testjson.h
 
 
 CONFIG(release, debug|release): DEFINES += QT_NO_DEBUG_OUTPUT
-
-
-DISTFILES += \
-    tklog/TKlog.pri

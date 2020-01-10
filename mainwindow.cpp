@@ -2,13 +2,13 @@
 
 #include "QtDebug"
 
+#include "tmp/testjson.h"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
 
-    qInfo() << "create constructor MainWindow";
-
-    qDebug() << "test";
+    TestJSON testJSON;
 
 }
 
