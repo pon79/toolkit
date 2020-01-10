@@ -73,7 +73,9 @@ protected:
 };
 
 // нужно добавить в main
-// qInstallMessageHandler(Toolkit::Log::messageHandler);
+//#ifdef use_TKlog
+//qInstallMessageHandler(ToolKit::Log::messageHandler);
+//#endif
 
 /*!
  * \brief Обработчик сообщений Qt.
@@ -89,6 +91,10 @@ protected:
  */
 static void messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
+    #ifdef QT_NO_DEBUG
+    if ( type == QtDebugMsg ) return;
+    #endif
+
     // Отправляем собственные события логирования
     // для возможности дублировать сообщения в виджеты.
     // В этом случае в приложении нужно создать и инсталлировать фильтр событий LogEventFilter
@@ -134,9 +140,11 @@ static void messageHandler(QtMsgType type, const QMessageLogContext &context, co
         out << " INFO    ";
     }
 
+    #ifdef QT_DEBUG
+
     QString functionName{ context.function };
 
-    // ПРИМЕР functionName: int MainWindow::arrInfoUpdate(const QByteArray&)
+    // ПРИМЕР functionName int MainWindow::arrInfoUpdate(const QByteArray&)
 
     // отсекаем аргументы
     functionName = functionName.split("(").first();
@@ -150,6 +158,8 @@ static void messageHandler(QtMsgType type, const QMessageLogContext &context, co
 
     // дублируем в консоль операционной системы
     qDebug().noquote() << '[' << functionName << ']' << msg;
+
+    #endif // QT_DEBUG
 
     // записываем сообщение в файл
     out << msg << endl;
