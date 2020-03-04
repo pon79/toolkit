@@ -1,15 +1,21 @@
 #include "mainwindow.h"
 
-#include "QtDebug"
+#include <QtDebug>
+#include <QUuid>
 
-#include "tmp/testjson.h"
+//#include "tmp/testjson.h"
+#include "tmp/tmpxml.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
 
-    TestJSON testJSON;
+//    TestJSON testJSON;
 
+    TmpXML tmpXML;
+
+
+//    qDebug() << QUuid::createUuid().toString(QUuid::WithoutBraces);
 }
 
 MainWindow::~MainWindow()
