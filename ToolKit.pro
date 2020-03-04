@@ -10,11 +10,15 @@ TEMPLATE = app
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-        tmp/testjson.cpp
+        tmp/onvif.cpp \
+        tmp/testjson.cpp \
+        tmp/udprequest.cpp
 
 HEADERS += \
         mainwindow.h \
-        tmp/testjson.h
+        tmp/onvif.h \
+        tmp/testjson.h \
+        tmp/udprequest.h
 
 
 CONFIG(release, debug|release): DEFINES += QT_NO_DEBUG_OUTPUT
