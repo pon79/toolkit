@@ -1,6 +1,5 @@
 
-QT += core gui widgets xml
-
+QT += core gui widgets network
 
 # вспомогательные классы
 include( ../toolkit/tklog/TKlog.pri )
@@ -8,17 +7,20 @@ include( ../toolkit/tklog/TKlog.pri )
 TEMPLATE = app
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
-        tmp/onvif.cpp \
         tmp/testjson.cpp \
-        tmp/tmpxml.cpp
+        mainwindow.cpp \
+        main.cpp \
+        tmp/tmpnetwork.cpp
 
 HEADERS += \
-        mainwindow.h \
-        tmp/onvif.h \
         tmp/testjson.h \
-        tmp/tmpxml.h
+        mainwindow.h \
+        tmp/tmpnetwork.h
+
+# use_XML
+QT += xml
+SOURCES += tmp/tmpxml.cpp tmp/onvif.cpp
+HEADERS += tmp/tmpxml.h tmp/onvif.h
 
 
 CONFIG(release, debug|release): DEFINES += QT_NO_DEBUG_OUTPUT

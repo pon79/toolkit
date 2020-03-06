@@ -5,6 +5,7 @@
 
 #include <QtXml>
 #include <QUuid>
+#include <QHostAddress>
 
 class TmpXML : public QObject
 {
@@ -17,6 +18,10 @@ public:
 
 signals:
 
+
+private:
+    void createGetCapabilitiesResponse();
+    void createGetScopesResponse();
 };
 
 #endif // TMPXML_H
