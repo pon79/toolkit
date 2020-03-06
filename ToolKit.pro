@@ -1,5 +1,4 @@
-
-QT += core gui widgets network
+QT += core gui widgets xml network
 
 # вспомогательные классы
 include( ../toolkit/tklog/TKlog.pri )
@@ -10,11 +9,13 @@ SOURCES += \
         tmp/testjson.cpp \
         mainwindow.cpp \
         main.cpp \
+        tmp/udprequest.cpp \
         tmp/tmpnetwork.cpp
 
 HEADERS += \
         tmp/testjson.h \
         mainwindow.h \
+        tmp/udprequest.h \
         tmp/tmpnetwork.h
 
 # use_XML
