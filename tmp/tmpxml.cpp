@@ -182,7 +182,9 @@ void TmpXML::createGetScopesResponse()
                << "onvif://www.onvif.org/type/video_analytics"
                << "onvif://www.onvif.org/type/ptz"
                << "onvif://www.onvif.org/location/country/russia"
-               << "onvif://www.onvif.org/hardware/IPcamera";
+               << "onvif://www.onvif.org/hardware/IPcamera"
+               << "onvif://www.onvif.org/name/Name1";;
+
 
     for( auto scopeItem : scopeItems)
     {
