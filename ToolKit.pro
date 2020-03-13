@@ -24,4 +24,4 @@ SOURCES += tmp/tmpxml.cpp tmp/onvif.cpp
 HEADERS += tmp/tmpxml.h tmp/onvif.h
 
 
-CONFIG(release, debug|release): DEFINES += QT_NO_DEBUG_OUTPUT
+#CONFIG(release, debug|release): DEFINES += QT_NO_DEBUG_OUTPUT

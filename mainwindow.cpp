@@ -1,12 +1,5 @@
 #include "mainwindow.h"
 
-#include <QtDebug>
-#include <QUuid>
-
-//#include "tmp/testjson.h"
-#include "tmp/tmpxml.h"
-
-#include "tmp/tmpnetwork.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,9 +7,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 //    TestJSON testJSON;
 
-    TmpXML tmpXML;
+//    TmpXML tmpXML;
 
-//    TmpNetwork tmpNetwork;
 
 //    qDebug() << QUuid::createUuid().toString(QUuid::WithoutBraces);
 }
