@@ -6,7 +6,7 @@
 #include <QDebug>
 
 #include <QtNetwork>
-
+#include <QRegExp>
 
 class TmpNetwork : public QObject
 {
