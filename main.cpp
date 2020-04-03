@@ -5,6 +5,8 @@
 #include "tklog.h"
 #endif
 
+#include "tmp/tmpnetwork.h"
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -13,8 +15,10 @@ int main(int argc, char *argv[])
     qInstallMessageHandler(ToolKit::Log::messageHandler);
     #endif
 
-    MainWindow w;
-    w.show();
+//    MainWindow w;
+//    w.show();
+
+    TmpNetwork g;
 
     return a.exec();
 }

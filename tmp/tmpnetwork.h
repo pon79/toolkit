@@ -18,6 +18,8 @@ class TmpNetwork : public QObject
     QNetworkAccessManager m_accessManager;
 //    QNetworkConfigurationManager m_confManager;
 
+    QNetworkReply *m_pReply = nullptr;
+
 public:
     explicit TmpNetwork(QObject *parent = nullptr);
 
@@ -25,9 +27,13 @@ signals:
 
 private:
     void tmpNetworkConfiguration();
+    void tmpPostOnvifServer();
 
 private slots:
 //    void slotNetworkAccessibleChanged( QNetworkAccessManager::NetworkAccessibility accessible );
+    void slotReadyRead();
+    void slotError();
+    void slotSslErrors();
 };
 
 #endif // TMPNETWORK_H
