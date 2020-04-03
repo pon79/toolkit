@@ -13,6 +13,8 @@ TmpNetwork::TmpNetwork(QObject *parent) : QObject(parent)
             this, &TmpNetwork::slotError);
     connect(m_pReply, &QNetworkReply::sslErrors,
             this, &TmpNetwork::slotSslErrors);
+    // 192.168.1.245:5577
+    QRegExp regIP{ "[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}:[0-9]{2,4}" };
 
     tmpPostOnvifServer();
 
