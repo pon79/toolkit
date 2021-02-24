@@ -31,6 +31,16 @@ namespace Log {
 static void messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
 
+    #ifndef QT_DEBUG
+    if ( type == QtDebugMsg )
+        return;
+    #endif
+
+
+
+
+
+
     QString configLocation =
         QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation).first();
     QString organizationName = QCoreApplication::organizationName().remove(QChar(' '));
@@ -40,14 +50,43 @@ static void messageHandler(QtMsgType type, const QMessageLogContext &context, co
                  (organizationName.isEmpty() ? "" : "/") + applicationName +
                  (applicationName.isEmpty() ? "" : "/") + "logs" };
 
-    if (!logDir.exists())
-        if (!logDir.mkpath(logDir.path()))
-            qWarning() << "failed to create logging directory";
+
+    if ( logDir.exists() )
+    {
+        // если лог-файлов в папке более 30, то удалим 10 самых ранних лог-файлов
+        auto fileList = logDir.entryList( QDir::NoDotAndDotDot	| QDir::NoSymLinks	| QDir::Files, QDir::Time);
+
+        if( fileList.size() > 30 )
+        {
+            auto it{ --fileList.end() };
+            for( int i = 0 ; i < 10 ; i++, --it)
+                QFile::remove( logDir.absolutePath() + '/' + *it );
+        }
+    }
+    else
+    {
+        if ( logDir.mkpath(logDir.absolutePath()) )
+            qInfo() << "Create directory" << logDir.absolutePath();
+        else
+            qWarning() << "Failed to create logging directory: " << logDir.absolutePath();
+    }
+
 
     QFile logFile(logDir.path() + '/' + QDate::currentDate().toString(Qt::ISODate));
 
-    if (!logFile.open(QIODevice::Append | QIODevice::Text))
-        qWarning() << "failed to open logFile";
+
+    // установим максимальный размер лог-файла = 5 Мбайт
+    if( logFile.size() > 5000000 )
+    {
+        if (!logFile.open(QIODevice::WriteOnly | QIODevice::Text))
+            qWarning() << "failed to open logFile";
+    }
+    else
+    {
+        if (!logFile.open(QIODevice::Append | QIODevice::Text))
+            qWarning() << "failed to open logFile";
+    }
+
 
     QTextStream out(&logFile);
 
