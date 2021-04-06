@@ -1,17 +1,12 @@
 # xmlToJson Qt
 
-Конвертер из XML в JSON c использованием синтаксического
-анализатора QxmlStreamReader и классами по работе с JSON (QJsonDocument, QJsonArray, QJsonObject, QJsonParseError).
 
-Конвертер реализован на основе рекурсии.
+XML to JSON converter using QxmlStreamReader and JSON classes (QJsonDocument, QJsonArray, QJsonObject, QJsonParseError).
 
-С учётом следующих особенностей:
-- если в атрибутах элемента XML встречается число, то сохраняем его как строку (нужно для большинства запросов ONVIF);
-- если предполагаемое число не конвертируется в double, то сохраняем его как строку (скорее всего это серийный номер устройства);
-- пространства имён в атрибутах Envelope (например, xmlns:xsd="http://www.w3.org/2001/XMLSchema") не конвертируются;
-- атрибуты XML в JSON имеют префикс @;
+The converter is implemented using recursion.
 
-Пример:
+
+Example:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope" xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding"
@@ -120,3 +115,8 @@ xmlns:tplt="http://www.onvif.org/ver10/plus/schema">
 ```
 
 
+С учётом следующих особенностей:
+- если в атрибутах элемента XML встречается число, то сохраняем его как строку (нужно для большинства запросов ONVIF);
+- если предполагаемое число не конвертируется в double, то сохраняем его как строку (скорее всего это серийный номер устройства);
+- пространства имён в атрибутах Envelope (например, xmlns:xsd="http://www.w3.org/2001/XMLSchema") не конвертируются;
+- атрибуты XML в JSON имеют префикс @;
