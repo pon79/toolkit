@@ -3,17 +3,15 @@
 В режиме release записывает в файл события по уровням qInfo, qWarning, qCritical и qFatal.
 В режиме debug добавляется вывод qDebug и сообщения дублируются в консоль.
 
-Файлы логирования пишутся в каталог пользовательских настроек (для ubuntu это /home/user/.config).
-В папку с названием компании + название программы.
+Log files are written to the user settings directory (example /home/user/.config).
+In the folder with the name of the company + the name of the program.
 
-Пример использования:
 
 ```c++
 #include "mainwindow.h"
 #include <QApplication>
 
 #ifdef use_TKlog
-// вспомогательный класс для логирования
 #include "tklog.h"
 #endif
 
@@ -22,7 +20,6 @@ int main(int argc, char *argv[])
 	QApplication a(argc, argv);
 
 	#ifdef use_TKlog
-	// Устанавливаем обработчик
 	qInstallMessageHandler(ToolKit::Log::messageHandler);
 	#endif
 
@@ -32,7 +29,8 @@ int main(int argc, char *argv[])
 	return a.exec();
 }
 ```
-Далее внтури кода используем [Warning and Debugging Messages](https://doc.qt.io/qt-5/debug.html#warning-and-debugging-messages):
+
+[Warning and Debugging Messages](https://doc.qt.io/qt-5/debug.html#warning-and-debugging-messages):
 
 Qt includes global macros for writing out warning and debug text. You can use them for the following purposes:
 
@@ -42,7 +40,7 @@ Qt includes global macros for writing out warning and debug text. You can use th
     qCritical() is used for writing critical error messages and reporting system errors.
     qFatal() is used for writing fatal error messages shortly before exiting.
 
-Например:
+Example:
 ```c++
 if ( logDir.mkpath( logDir.path() ) )
     qInfo() << "created logging directory";
