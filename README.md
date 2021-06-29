@@ -1,17 +1,15 @@
 # Вспомогательные классы для Qt проектов
  
-[TKlog](https://github.com/pon79/toolkit/tree/master/tklog) - логирование.
+[TKlog](https://github.com/pon79/toolkit/tree/master/tklog) - logger.
 
-[xmlToJson](https://github.com/pon79/toolkit/tree/master/xmlToJson) - конвертер из XML в JSON.
+[xmlToJson](https://github.com/pon79/toolkit/tree/master/xmlToJson) - XML to JSON converter
 
-Для использования нужно добавить в проектный файл приложения файл .pri
-Например:
+Example:
 
 	QT       += core gui widgets
 
 	TEMPLATE = app
-
-	# вспомогательные классы
+	
 	include( ../toolkit/tklog/TKlog.pri )
 	include( ../toolkit/xmlToJson/xmlToJson.pri )
 
