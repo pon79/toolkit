@@ -1,8 +1,5 @@
 # Логирование в Qt проектах.
 
-В режиме release записывает в файл события по уровням qInfo, qWarning, qCritical и qFatal.
-В режиме debug добавляется вывод qDebug и сообщения дублируются в консоль.
-
 Log files are written to the user settings directory (example /home/user/.config).
 In the folder with the name of the company + the name of the program.
 
