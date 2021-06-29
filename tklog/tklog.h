@@ -12,21 +12,14 @@
 namespace ToolKit {
 namespace Log {
 
-// нужно добавить в main
+// in main
 //#ifdef use_TKlog
 //qInstallMessageHandler(ToolKit::Log::messageHandler);
 //#endif
 
 /*!
- * \brief Обработчик сообщений Qt.
+ * \brief Message handler Qt.
  *
- * Файлы логирования пишутся в каталог пользовательских настроек /home/user/.config
- * в папку с названием компании + название программы.
- * В режиме debug к сообщениям добавлены название класса и название функции.
- * В режиме release вывод в консоль операционной системы не осуществляется.
- * \param type тип сообщения: qDebug(), qInfo(), qWarning(), qCritical(), qFatal()
- * \param context информация о сообщении (прототип функции и пр.)
- * \param msg текст сообщения
  */
 static void messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
@@ -35,11 +28,6 @@ static void messageHandler(QtMsgType type, const QMessageLogContext &context, co
     if ( type == QtDebugMsg )
         return;
     #endif
-
-
-
-
-
 
     QString configLocation =
         QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation).first();
@@ -53,7 +41,7 @@ static void messageHandler(QtMsgType type, const QMessageLogContext &context, co
 
     if ( logDir.exists() )
     {
-        // если лог-файлов в папке более 30, то удалим 10 самых ранних лог-файлов
+        // if there are more than 30 log files, then delete the 10 earliest log files
         auto fileList = logDir.entryList( QDir::NoDotAndDotDot	| QDir::NoSymLinks	| QDir::Files, QDir::Time);
 
         if( fileList.size() > 30 )
@@ -75,7 +63,7 @@ static void messageHandler(QtMsgType type, const QMessageLogContext &context, co
     QFile logFile(logDir.path() + '/' + QDate::currentDate().toString(Qt::ISODate));
 
 
-    // установим максимальный размер лог-файла = 5 Мбайт
+    // set the maximum size of the log file = 5 MB
     if( logFile.size() > 5000000 )
     {
         if (!logFile.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -113,24 +101,24 @@ static void messageHandler(QtMsgType type, const QMessageLogContext &context, co
 
     QString functionName{ context.function };
 
-    // ПРИМЕР functionName int MainWindow::arrInfoUpdate(const QByteArray&)
+    // EXAMPLE functionName int MainWindow::arrInfoUpdate(const QByteArray&)
 
-    // отсекаем аргументы
+    // cutting off arguments
     functionName = functionName.split("(").first();
 
-    // если есть возвращаемое значение, то и его отсекаем
+    // if there is a return value, then we cut it off
     if (functionName.contains(' '))
         functionName = functionName.split(' ').last();
 
-    // должны были остаться только название класса и название функции
+    // only the class name and the function name should remain
     out << " [" << functionName << "] ";
 
-    // дублируем в консоль операционной системы
+    // duplicated in the operating system console
     qDebug().noquote() << '[' << functionName << ']' << msg;
 
     #endif // QT_DEBUG
 
-    // записываем сообщение в файл
+    // write a message to a file
     out << msg << endl;
 
     out.flush();
