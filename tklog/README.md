@@ -1,4 +1,4 @@
-# Логирование в Qt проектах.
+# Logging in Qt projects.
 
 Log files are written to the user settings directory (example /home/user/.config).
 In the folder with the name of the company + the name of the program.
